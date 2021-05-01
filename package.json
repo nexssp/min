@@ -1,6 +1,6 @@
 {
   "name": "@nexssp/min",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Just minimize safely, FAST all src files to dist folder individually with the same name..",
   "main": "dist/min.js",
   "bin": {
@@ -27,7 +27,7 @@
   "scripts": {
     "test": "jest --env=node --verbose ./tests",
     "prepublish": "npm run build",
-    "build": "nexss ./bin/nexssp-min.js"
+    "build": "node ./bin/nexssp-min.js"
   },
   "files": [
     "dist/min.js"
