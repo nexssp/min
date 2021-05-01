@@ -51,6 +51,11 @@ const compress = async (
   distFolder = "./dist/",
   options = {} //glob,
 ) => {
+  if (!require("fs").existsSync(sourceFolder)) {
+    error("Source folder does not exist.");
+    process.exit(1);
+  }
+
   options.glob = options.glob || "**/*.js";
 
   if (!sourceFolder.endsWith("/") && !sourceFolder.endsWith("\\")) {
