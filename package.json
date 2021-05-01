@@ -1,6 +1,6 @@
 {
   "name": "@nexssp/min",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Just minimize safely, FAST all src files to dist folder individually with the same name..",
   "main": "dist/min.js",
   "bin": {
@@ -18,10 +18,10 @@
   "homepage": "https://nexss.com",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/nexssp/os.git"
+    "url": "git+ssh://git@github.com/nexssp/min.git"
   },
   "bugs": {
-    "url": "https://github.com/nexssp/os/issues",
+    "url": "https://github.com/nexssp/min/issues",
     "email": "mapoart@gmail.com"
   },
   "scripts": {

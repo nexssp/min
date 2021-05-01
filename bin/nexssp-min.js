@@ -1,8 +1,12 @@
+#!/usr/bin/env node
 const { compress } = require("../src/min");
 const { header, ok, info } = require("@nexssp/logdebug");
 const { bold, yellow } = require("@nexssp/ansi");
 (async () => {
   console.time(bold("@nexssp/min"));
+  
+  const [,,...args] = process.argv;
+  
   const from = process.argv[2] || "./src/";
   const to = process.argv[3] || "./dist/";
 
