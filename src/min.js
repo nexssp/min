@@ -2,7 +2,7 @@ const { minify } = require("terser");
 const fs = require("fs").promises;
 const { error } = require("@nexssp/logdebug");
 
-const file = async (file, dest, options) => {
+const file = async (file, dest, options = {}) => {
   // console.log(`converting file: ${file}`);
 
   const code = await fs.readFile(file).catch((e) => console.error(e));
@@ -11,6 +11,10 @@ const file = async (file, dest, options) => {
     process.exitCode = 1;
   } else {
     const codeString = code.toString();
+    options.parse = {
+      bare_returns: true,
+    };
+
     const compressed = await minify(codeString, options);
     const destination = file.replace("./src/", dest);
 
