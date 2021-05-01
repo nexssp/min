@@ -26,7 +26,7 @@ const file = async (file, dest, options = {}) => {
     const destFolder = require("path").dirname(destination);
 
     if (!require("fs").existsSync(destFolder)) {
-      await fs.mkdir(destFolder);
+      await fs.mkdir(destFolder, { recursive: true });
     }
 
     const percentage = 100 - (compressed.code.length / code.length) * 100;
