@@ -1,6 +1,6 @@
 {
   "name": "@nexssp/min",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Just minimize safely, FAST all src files to dist folder individually with the same name..",
   "main": "dist/min.js",
   "bin": {

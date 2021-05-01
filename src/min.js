@@ -1,10 +1,10 @@
 const { minify } = require("terser");
 const fs = require("fs").promises;
-const { error } = require("@nexssp/logdebug");
+const { error, info } = require("@nexssp/logdebug");
 
 const file = async (file, dest, options = {}) => {
   // console.log(`converting file: ${file}`);
-
+  let error_ = null;
   const code = await fs.readFile(file).catch((e) => console.error(e));
   if (!code) {
     console.log(`File can't be converted: ${file}`);
@@ -15,7 +15,16 @@ const file = async (file, dest, options = {}) => {
       bare_returns: true,
     };
 
-    const compressed = await minify(codeString, options);
+    const compressed = await minify(codeString, options).catch((e) => {
+      process.exitCode = 1;
+      error(`${file} -> can't do: \n` + e);
+      process.exit(1);
+    });
+
+    if (!compressed) {
+      return;
+    }
+
     const destination = file.replace("./src/", dest);
 
     if (file === destination) {
@@ -49,7 +58,7 @@ const file = async (file, dest, options = {}) => {
 const compress = async (
   sourceFolder = "./src/",
   distFolder = "./dist/",
-  options = {} //glob,
+  options = {}
 ) => {
   if (!require("fs").existsSync(sourceFolder)) {
     error("Source folder does not exist.");

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { compress } = require("../dist/min");
+const { compress } = require("../");
 const { header, ok, info } = require("@nexssp/logdebug");
 const { bold, yellow } = require("@nexssp/ansi");
 (async () => {
@@ -15,12 +15,14 @@ const { bold, yellow } = require("@nexssp/ansi");
   const result = await compress(from, to, { glob });
   header("Starting @nexssp/min module");
   info("Starting compression..");
-  result.forEach((r) =>
-    ok(
-      `${bold(yellow(r.file))} ${r.length} => ${r.compressed.length} ${bold(
-        "(" + r.compressed.percentage + "%)"
-      )}`
-    )
+  result.forEach(
+    (r) =>
+      r &&
+      ok(
+        `${bold(yellow(r.file))} ${r.length} => ${r.compressed.length} ${bold(
+          "(" + r.compressed.percentage + "%)"
+        )}`
+      )
   );
   ok(bold("@nexssp/min -> done."));
   console.timeEnd(bold("@nexssp/min"));
